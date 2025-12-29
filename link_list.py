@@ -7,7 +7,7 @@ class Node:
 class SinglyLinkList:
     # head = None
     # last = Node()
-    def __init__(self,head=None,last=None):
+    def __init__(self, head=None, last=None):
         self.head = head
         self.last = Node()
 
@@ -25,11 +25,11 @@ class SinglyLinkList:
         while n.next != None:
             print(n.item)
             n = n.next
-            if(n.next == None):
+            if n.next == None:
                 print(n.item)
-    def deleteFirst(self,list):
-        list.head = list.head.next
 
+    def deleteFirst(self, list):
+        list.head = list.head.next
 
 
 s1 = SinglyLinkList()
@@ -41,7 +41,7 @@ s1.insert(5)
 # s1.insert(8)
 
 s2.insert(1)
-s2.insert(2)
+s2.insert(3)
 s2.insert(4)
 # s2.insert(303)
 # s2.insert(5)
@@ -60,44 +60,52 @@ m = SinglyLinkList()
 myList = Node()
 firstNode = myList
 while n1 is not None or n2 is not None:
-    # if n1 is None and n2 is None:
-    #     break
+    if n1 is None and n2 is None:
+        break
     if n1 is None:
+
         myList.next = n2
         break
     elif n2 is None:
         myList.next = n1
         break
-    if n2.item>n1.item and n2.next<n1.item:
-        if myList.item is None:     
-            firstNode.item = n1.item  
-            if n1.next.item<n2.item:     
-                myList.item = n2.item
-                firstNode.next = myList
-            else:
-                firstNode.next = myList   
-        else:
-            myList.next = Node(n1.item)
-            myList.next.next= Node(n2.item)
-    else:
+
+
+    enterN2=False
+    enterN1=False
+    if n2.item > n1.item:
+        # print(n1.item,n2.item)
         if myList.item is None:
-            # print(n2.item)                 
-            firstNode.item = n2.item 
-            if n1.item<n2.next.item:     
-                myList.item = n1.item
-                firstNode.next = myList
-            else:
-                firstNode.next = myList   
-
+            myList.item = n1.item
         else:
-            myList.next = Node(n2.item,Node(n1.item))
-    if myList.next is not None:
-        myList = myList.next.next
-    n1 = n1.next
-    n2 = n2.next
+            myList.next.item = n1.item
+        enterN1 = True
+        if n1.next is not None:
+            if n2.item < n1.next.item:
+                myList.next = Node(n2.item)
+                myList = myList.next
+    else:
+        # print(n1.item < n2.next.item)
+        if myList.item is None:
+             
+             myList.item = n2.item
+        else:
+            # print(myList.next.item)
+            myList.next.item = n2.item     
+        enterN2=True
+        if n2.next is not None:
+            if n1.item < n2.next.item:
+                enterN1=True
+                myList.next = Node(n1.item)
+                myList = myList.next
+    myList.next = Node()
+    # myList = myList.next
+    if enterN1:
+        n1 = n1.next
+    if enterN2:    
+        n2 = n2.next
 
-temp = firstNode    
+temp = firstNode
 while temp is not None:
     print(temp.item)
     temp = temp.next
-       
