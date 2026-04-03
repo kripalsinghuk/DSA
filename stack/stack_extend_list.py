@@ -1,11 +1,11 @@
 class Stack(list):
-    def __init__(self):
-        # self.myList=[]
-        pass
+    # def __init__(self):
+    #     # self.myList=[]
+    #     pass
 
     def push(self, item):
         super().append(item)
-        
+
     #it already exist in parent class so why create it.
     # def pop(self): 
     #     super().pop()
@@ -38,4 +38,4 @@ stack.push(3)
 stack.pop()
 stack.is_empty()
 stack.size()
-stack.append(2)
+# stack.append(2)
