@@ -73,7 +73,7 @@ class DoublyLinkedList:
              temp = temp.next
          else:
              backup = temp
-             temp.prev.next = None
+             temp.prev = None
              backup.prev = None
 
 d = DoublyLinkedList()
