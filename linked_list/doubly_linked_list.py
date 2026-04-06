@@ -29,7 +29,7 @@ class DoublyLinkedList:
         newNode = Node(None,val,self.head)
         self.head.prev = newNode
         self.head = newNode
-    
+
     def insert_after_item(self,after_item,val):
         temp = self.head
         while temp.next is not None:
@@ -47,7 +47,7 @@ class DoublyLinkedList:
             else:
                 print("No element found after last")
 
-   
+
     def insert_before_item(self,before_item,val):
         temp = self.head
         while temp.next is not None:
@@ -67,15 +67,25 @@ class DoublyLinkedList:
             else:
                 print("No element matched before last")
 
+    def delete_from_last(self):
+         temp = self.head
+         while temp.next is not None:
+             temp = temp.next
+         else:
+             backup = temp
+             temp.prev.next = None
+             backup.prev = None
 
 d = DoublyLinkedList()
 d.insert(10)
 d.insert(20)
 d.insert(30)
 d.insert(40)
-d.printList()
+#d.printList()
 d.insert_after_item(30,35)
 d.insert_before_item(20,15)
-d.insert_after_item(33,32)
-d.insert_before_item(33,32)
+#d.insert_after_item(33,32)
+#d.insert_before_item(33,32)
 d.printList()
+d.delete_from_last()
+d.printList() 
