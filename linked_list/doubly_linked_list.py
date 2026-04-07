@@ -75,6 +75,23 @@ class DoublyLinkedList:
              temp.prev.next =  None
              backup.prev = None
 
+     def delete_at_first(self):
+         if self.head is not None:
+             self.head = self.head.next
+         else:
+             print("empty linked list")
+     
+     def delete_a_element(self,val):
+         temp = self.head
+         while temp.next is not None:
+             if temp.val == val:
+                 temp.prev.next = temp.next
+                 temp.next.prev = temp.prev
+             temp = temp.next
+         else:
+
+
+
 d = DoublyLinkedList()
 d.insert(10)
 d.insert(20)
