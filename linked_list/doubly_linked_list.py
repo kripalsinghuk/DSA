@@ -35,9 +35,8 @@ class DoublyLinkedList:
         while temp.next is not None:
             if temp.val == after_item:
                 newNode = Node(temp,val,temp.next)
-                backup = temp
+                temp.next.prev = newNode
                 temp.next = newNode
-                backup.next.prev = newNode
                 break
             temp = temp.next
         else:
@@ -73,8 +72,25 @@ class DoublyLinkedList:
              temp = temp.next
          else:
              backup = temp
-             temp.prev = None
+             temp.prev.next =  None
              backup.prev = None
+
+     def delete_at_first(self):
+         if self.head is not None:
+             self.head = self.head.next
+         else:
+             print("empty linked list")
+     
+     def delete_a_element(self,val):
+         temp = self.head
+         while temp.next is not None:
+             if temp.val == val:
+                 temp.prev.next = temp.next
+                 temp.next.prev = temp.prev
+             temp = temp.next
+         else:
+
+
 
 d = DoublyLinkedList()
 d.insert(10)
@@ -87,5 +103,6 @@ d.insert_before_item(20,15)
 #d.insert_after_item(33,32)
 #d.insert_before_item(33,32)
 d.printList()
+print("------------------------------")
 d.delete_from_last()
 d.printList() 
