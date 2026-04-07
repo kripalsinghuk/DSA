@@ -35,9 +35,8 @@ class DoublyLinkedList:
         while temp.next is not None:
             if temp.val == after_item:
                 newNode = Node(temp,val,temp.next)
-                backup = temp
+                temp.next.prev = newNode
                 temp.next = newNode
-                backup.next.prev = newNode
                 break
             temp = temp.next
         else:
@@ -73,7 +72,7 @@ class DoublyLinkedList:
              temp = temp.next
          else:
              backup = temp
-             temp.prev = None
+             temp.prev.next =  None
              backup.prev = None
 
 d = DoublyLinkedList()
@@ -87,5 +86,6 @@ d.insert_before_item(20,15)
 #d.insert_after_item(33,32)
 #d.insert_before_item(33,32)
 d.printList()
+print("------------------------------")
 d.delete_from_last()
 d.printList() 
