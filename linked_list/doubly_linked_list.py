@@ -7,9 +7,11 @@ class Node:
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
+        self.count = 0
     def insert(self,val):
         if self.head is None:
             self.head = Node(None,val,None)
+            self.count+=1
         else:
             temp = self.head
             while temp.next is not None:
@@ -17,6 +19,7 @@ class DoublyLinkedList:
             else:
                 newNode = Node(temp,val,None)
                 temp.next = newNode
+                self.count+=1
     def printList(self):
          temp = self.head
          while temp.next is not None:
@@ -29,6 +32,7 @@ class DoublyLinkedList:
         newNode = Node(None,val,self.head)
         self.head.prev = newNode
         self.head = newNode
+        self.count+=1
 
     def insert_after_item(self,after_item,val):
         temp = self.head
@@ -37,12 +41,14 @@ class DoublyLinkedList:
                 newNode = Node(temp,val,temp.next)
                 temp.next.prev = newNode
                 temp.next = newNode
+                self.count+=1
                 break
             temp = temp.next
         else:
             if temp.val == after_item:
                 newNode = Node(temp,val,None)
                 temp.next = newNode
+                self.count+=1
             else:
                 print("No element found after last")
 
@@ -55,6 +61,7 @@ class DoublyLinkedList:
                 backup = temp
                 temp.prev.next =  newNode
                 backup.prev = newNode
+                self.count+=1
                 break
             temp = temp.next
         else:
@@ -63,6 +70,7 @@ class DoublyLinkedList:
                 backup = temp
                 temp.prev.next = newNode
                 backup.prev = newNode
+                self.count+=1
             else:
                 print("No element matched before last")
 
@@ -74,21 +82,33 @@ class DoublyLinkedList:
              backup = temp
              temp.prev.next =  None
              backup.prev = None
+             self.count-=1
 
-     def delete_at_first(self):
+    def delete_at_first(self):
          if self.head is not None:
              self.head = self.head.next
+             self.count-=1
          else:
              print("empty linked list")
      
-     def delete_a_element(self,val):
+    def delete_a_element(self,val):
          temp = self.head
          while temp.next is not None:
              if temp.val == val:
                  temp.prev.next = temp.next
                  temp.next.prev = temp.prev
+                 self.count-=1
              temp = temp.next
          else:
+             if temp.val == val:
+                 temp.prev.next = None
+                 temp.prev = None
+                 self.count-=1
+             else:
+                 print("no element found")
+       
+    def size(self):
+        return self.count
 
 
 
@@ -105,4 +125,6 @@ d.insert_before_item(20,15)
 d.printList()
 print("------------------------------")
 d.delete_from_last()
-d.printList() 
+d.delete_a_element(20)
+d.printList()
+print(d.size())
