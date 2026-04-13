@@ -9,7 +9,7 @@ class Tree:
     def trev(self,temp):
         if temp is None:
             return
-        print("item",temp.item)
+        print("trev",temp.item)
         if temp.left is None and temp.right is None:
             return
         if temp.left is None:
@@ -24,16 +24,26 @@ class Tree:
         self.trev(self.root)
         
         
-    def insert(self,item):
-        newNode = Node(None,item,None)
-        if self.root is None:
-            self.root1 = newNode
+    def insert(self,item,temp):
+        if temp is None:
+            newNode = Node(None,item,None)
+            self.root = newNode
+            return
+        if temp.left is None:
+            temp.left = Node(None,item,None)
+            return
+        elif temp.right is None:
+            temp.right = Node(None,item,None)
         else:
-            temp = self.root
-            while temp.left is not None and temp.right is not None:
-                print("item",temp.item)
-                
+            self.insert(item,temp.left)
+    
+    def callInsert(self,item):
+        self.insert(item,self.root)
 
 t = Tree()
+t.callInsert(2)
+t.callInsert(3)
+t.callInsert(4)
+t.callInsert(5)
 t.callTrev()
                 
