@@ -6,6 +6,7 @@ class Node:
 class Tree:
     def __init__(self):
         self.root = None
+
     def trev(self,temp):
         if temp is None:
             return
@@ -19,7 +20,24 @@ class Tree:
         else:
             self.trev(temp.left)
             self.trev(temp.right)
-    
+
+    def inOrderTrev(self,temp):
+        if temp is None:
+            return
+        
+        if temp.left is not None:
+            self.inOrderTrev(temp.left)
+        elif temp.right is not None:    
+            self.inOrderTrev(temp.right)
+        else:
+            print("center",temp.item)
+            
+            
+            
+
+    def callInOrdTrev(self):
+        self.inOrderTrev(self.root)
+
     def callTrev(self):
         self.trev(self.root)
         
@@ -41,9 +59,10 @@ class Tree:
         self.insert(item,self.root)
 
 t = Tree()
-t.callInsert(2)
-t.callInsert(3)
-t.callInsert(4)
-t.callInsert(5)
+t.callInsert(98)
+t.callInsert(56)
+t.callInsert(43)
+t.callInsert(78)
 t.callTrev()
+t.callInOrdTrev()
                 
